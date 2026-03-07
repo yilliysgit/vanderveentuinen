@@ -1,0 +1,110 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+
+function useInView(threshold = 0.2) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, inView };
+}
+
+export default function CtaSection() {
+  const { ref, inView } = useInView();
+
+  return (
+    <section
+      ref={ref}
+      aria-label="Plan een kennismaking"
+      style={{
+        background: "var(--bg-alt)",
+        padding: "var(--section-y) var(--section-x)",
+      }}
+    >
+      <div style={{ maxWidth: "var(--max-w)", margin: "0 auto" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-32 items-end">
+
+          {/* Links: headline */}
+          <div>
+            <div
+              className={[
+                "mb-8",
+                "transition-[opacity,transform] duration-700 ease-out",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
+              ].join(" ")}
+            >
+              <span className="eyebrow">Kennismaking</span>
+            </div>
+
+            <h2
+              className={[
+                "transition-[opacity,transform] duration-[900ms] ease-out delay-150",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+              ].join(" ")}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 400,
+                fontSize: "clamp(2.4rem, 4.5vw, 4.8rem)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.02em",
+                color: "var(--ink)",
+              }}
+            >
+              Overweegt u een<br />nieuwe buitenruimte?
+            </h2>
+          </div>
+
+          {/* Rechts: tekst + CTA */}
+          <div
+            className={[
+              "flex flex-col gap-8",
+              "transition-[opacity,transform] duration-[900ms] ease-out delay-300",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+            ].join(" ")}
+          >
+            <p className="body-lg" style={{ maxWidth: "440px" }}>
+              In een eerste gesprek verkennen we uw wensen, ideeën en de
+              mogelijkheden van uw locatie. Zonder verplichting, met volledige
+              aandacht.
+            </p>
+
+            <div className="flex flex-col gap-4">
+              <Link href="/contact" className="btn-primary group" style={{ width: "fit-content" }}>
+                Plan een kennismaking
+                <svg
+                  width="16" height="10" viewBox="0 0 16 10" fill="none"
+                  className="transition-transform duration-300 group-hover:translate-x-1.5"
+                >
+                  <path d="M11 1l4 4-4 4M1 5h14" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+
+              <p
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "11px",
+                  fontWeight: 300,
+                  letterSpacing: "0.06em",
+                  color: "var(--ink-faint)",
+                }}
+              >
+                Een eerste gesprek is bedoeld om te verkennen of we bij elkaar passen.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
