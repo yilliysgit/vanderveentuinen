@@ -1,4 +1,4 @@
-import ProjectHero from "@/components/hero/ProjectsHero";
+import ProjectsHero from "@/components/hero/ProjectsHero";
 import ProjectsGrid from "@/components/projecten/ProjectsGrid";
 import ProjectsCta from "@/components/projecten/ProjectCta";
 
@@ -10,9 +10,9 @@ export default async function ProjectenPage() {
 
   return (
     <>
-      <ProjectHero imageUrl="/images/projects-hero.jpg" alt="Projects Hero" />
+      <ProjectsHero />
       <ProjectsGrid projects={projects} />
       <ProjectsCta />
     </>
   );
-}
+};

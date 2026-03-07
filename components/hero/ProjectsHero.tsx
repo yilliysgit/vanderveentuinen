@@ -1,30 +1,93 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+function useInView(threshold = 0.2) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, inView };
+}
+
 export default function ProjectsHero() {
+  const { ref, inView } = useInView();
+
   return (
-    <section className="bg-[#f5f0ea] px-[7vw] pt-[10vh] pb-[6vh] lg:pt-[8vh]">
-      <div className="mx-auto max-w-[1400px]">
+    <section
+      aria-label="Projecten"
+      className="section-pad"
+      style={{ background: "var(--bg)" }}
+    >
+      <div className="section-inner">
 
-        {/* Eyebrow */}
-        <div className="flex items-center gap-3 mb-10">
-          <span className="block w-8 h-px bg-[#5a7a52]/60" />
-          <span className="text-[10px] font-medium tracking-[0.28em] uppercase text-[#5a7a52]">
-            Projecten
-          </span>
-        </div>
+        {/* HEADER */}
+        <div
+          ref={ref}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-10"
+          style={{
+            marginBottom: "clamp(3.5rem,4vw,5rem)",
+          }}
+        >
 
-        {/* Titel + intro */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[6vw] items-end">
+          {/* TITLE */}
+          <div
+            className={[
+              "transition-[opacity,transform] duration-700 ease-out",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+            ].join(" ")}
+          >
+            <span className="eyebrow mb-6 block">Projecten</span>
 
-          <h1 className="font-[Cormorant_Garamond,serif] font-light text-[clamp(2.4rem,4vw,4rem)] leading-[1.05] tracking-[-0.01em] text-[#1a1712]">
-            Geselecteerde<br/>buitenruimtes
-          </h1>
+            <h1 className="heading-lg">
+              Geselecteerde
+              <br />
+              buitenruimtes
+            </h1>
+          </div>
 
-          <div className="max-w-[520px] text-[15px] font-light leading-[1.85] text-[#5a5249]">
-            <p className="mb-6">
+          {/* INTRO */}
+          <div
+            className={[
+              "transition-[opacity,transform] duration-700 ease-out delay-150",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+            ].join(" ")}
+            style={{
+              paddingTop: "clamp(3rem,4vw,4rem)",
+            }}
+          >
+            <p className="body-lg" style={{ maxWidth: "440px" }}>
               Een selectie van gerealiseerde projecten, ontworpen en uitgevoerd
               met aandacht voor rust, detail en tijdloos gebruik.
             </p>
 
-            <p>
+            <p
+              className="body-lg"
+              style={{
+                maxWidth: "440px",
+                marginTop: "1.25rem",
+              }}
+            >
               Elke buitenruimte is afgestemd op de woning, de omgeving en het
               leven van de opdrachtgever.
             </p>
@@ -32,8 +95,7 @@ export default function ProjectsHero() {
 
         </div>
 
-        {/* divider */}
-        <div className="mt-[6vh] border-t border-[rgba(90,122,82,0.12)]"></div>
+        
 
       </div>
     </section>

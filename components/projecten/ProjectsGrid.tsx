@@ -18,7 +18,7 @@ function useInView(threshold = 0.1) {
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold, rootMargin: "0px 0px -80px 0px" }
     );
 
     observer.observe(el);
@@ -52,34 +52,26 @@ function ProjectCardLarge({ project }: { project: ProjectCard }) {
     >
       <Link href={`/projecten/${project.slug}`} className="group block">
 
-        {/* Image */}
-        <div className="img-zoom mb-8">
+        {/* IMAGE */}
+        <div className="img-zoom mb-14">
           <img
             src={project.heroImage.asset.url}
             alt={project.heroImage.alt || project.title}
-            className="w-full h-[56vh] lg:h-[70vh] object-cover"
+            className="w-full h-[52vh] lg:h-[62vh] object-cover"
           />
         </div>
 
-        {/* Text */}
-        <div className="flex items-start justify-between gap-6">
+        {/* TEXT */}
+        <div className="flex items-start justify-between gap-12">
 
-          <div style={{ maxWidth: "560px" }}>
+          <div className="max-w-[560px]">
 
-            <p
-              style={{
-                fontSize: "10px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--ink-faint)",
-                marginBottom: "0.6rem",
-              }}
-            >
+            <p className="text-[11px] tracking-[0.18em] uppercase text-[var(--ink-faint)] mb-3">
               {project.location ?? "Nederland"}
               {project.year ? ` · ${project.year}` : ""}
             </p>
 
-            <h3 className="heading-md group-hover:text-[var(--forest)] transition-colors">
+            <h3 className="heading-lg group-hover:text-[var(--forest)] transition-colors">
               {project.title}
             </h3>
 
@@ -90,12 +82,12 @@ function ProjectCardLarge({ project }: { project: ProjectCard }) {
             height="12"
             viewBox="0 0 18 12"
             fill="none"
-            className="shrink-0 mt-2 text-[var(--ink-faint)] transition-[transform,color] duration-300 group-hover:translate-x-1.5 group-hover:text-[var(--forest)]"
+            className="shrink-0 mt-4 text-[var(--ink-faint)] transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-[var(--forest)]"
           >
             <path
               d="M12 1l5 5-5 5M1 6h16"
               stroke="currentColor"
-              strokeWidth="1.1"
+              strokeWidth="1"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -121,42 +113,26 @@ function ProjectCardSmall({ project, delay = 0 }: { project: ProjectCard; delay?
     >
       <Link href={`/projecten/${project.slug}`} className="group block">
 
-        <div className="img-zoom mb-7">
+        {/* IMAGE */}
+        <div className="img-zoom mb-12">
           <img
             src={project.heroImage.asset.url}
             alt={project.heroImage.alt || project.title}
-            className="w-full h-[38vh] lg:h-[46vh] object-cover"
+            className="w-full h-[36vh] lg:h-[42vh] object-cover"
           />
         </div>
 
-        <div className="flex items-start justify-between gap-5">
+        {/* TEXT */}
+        <div className="flex items-start justify-between gap-10">
 
           <div>
 
-            <p
-              style={{
-                fontSize: "10px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--ink-faint)",
-                marginBottom: "0.6rem",
-              }}
-            >
+            <p className="text-[10px] tracking-[0.18em] uppercase text-[var(--ink-faint)] mb-3">
               {project.location ?? "Nederland"}
               {project.year ? ` · ${project.year}` : ""}
             </p>
 
-            <h3
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontWeight: 300,
-                fontSize: "clamp(1.45rem,2.1vw,2rem)",
-                lineHeight: 1.2,
-                letterSpacing: "-0.01em",
-                color: "var(--ink)",
-              }}
-              className="group-hover:text-[var(--forest)] transition-colors"
-            >
+            <h3 className="heading-md group-hover:text-[var(--forest)] transition-colors">
               {project.title}
             </h3>
 
@@ -167,12 +143,12 @@ function ProjectCardSmall({ project, delay = 0 }: { project: ProjectCard; delay?
             height="10"
             viewBox="0 0 16 10"
             fill="none"
-            className="shrink-0 mt-2 text-[var(--ink-faint)] transition-[transform,color] duration-300 group-hover:translate-x-1.5 group-hover:text-[var(--forest)]"
+            className="shrink-0 mt-3 text-[var(--ink-faint)] transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-[var(--forest)]"
           >
             <path
               d="M11 1l4 4-4 4M1 5h14"
               stroke="currentColor"
-              strokeWidth="1.1"
+              strokeWidth="1"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -200,7 +176,9 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
         key={`large-${i}`}
         style={{
           borderTop: "1px solid var(--border)",
-          paddingTop: isFirst ? "clamp(3rem,5vw,4rem)" : "clamp(4rem,7vw,6rem)",
+          paddingTop: isFirst
+            ? "clamp(4rem,6vw,5rem)"
+            : "clamp(5rem,8vw,6.5rem)",
         }}
       >
         <ProjectCardLarge project={projects[i]} />
@@ -219,9 +197,9 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
           key={`duo-${i}`}
           style={{
             borderTop: "1px solid var(--border)",
-            paddingTop: "clamp(4rem,7vw,6rem)",
+            paddingTop: "clamp(5rem,8vw,6.5rem)",
           }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-[5vw]"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-x-[6vw] gap-y-[7rem]"
         >
           <ProjectCardSmall project={p1} delay={0} />
           {p2 ? <ProjectCardSmall project={p2} delay={150} /> : <div />}
