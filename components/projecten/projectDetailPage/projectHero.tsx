@@ -1,9 +1,16 @@
+"use client";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+
 interface ProjectHeroProps {
   imageUrl: string;
   alt: string;
 }
 
 export default function ProjectHero({ imageUrl, alt }: ProjectHeroProps) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
   return (
 <section
   aria-label="Projecten"
