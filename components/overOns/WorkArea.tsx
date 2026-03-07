@@ -17,7 +17,7 @@ function useInView(threshold = 0.15) {
           obs.disconnect();
         }
       },
-      { threshold }
+      { threshold, rootMargin: "0px 0px -80px 0px" }
     );
 
     obs.observe(el);
@@ -32,27 +32,15 @@ export default function WorkArea() {
 
   return (
     <section
-      ref={ref}
       aria-label="Werkgebied en opdrachtgevers"
-      style={{
-        background: "var(--bg)",
-        padding: "clamp(5rem,9vw,8rem) var(--section-x)",
-      }}
+      className="section-pad"
+      style={{ background: "var(--bg)" }}
     >
-      <div
-        style={{
-          maxWidth: "var(--max-w)",
-          margin: "0 auto",
-        }}
-      >
+      <div className="section-inner">
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "4rem",
-          }}
-          className="lg:grid-cols-[1fr_0.9fr]"
+          ref={ref}
+          className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] gap-x-24 gap-y-10"
         >
 
           {/* LINKS */}
@@ -60,10 +48,9 @@ export default function WorkArea() {
 
             <div
               className={[
-                "transition-opacity duration-700 ease-out",
+                "mb-7 transition-opacity duration-700 ease-out",
                 inView ? "opacity-100" : "opacity-0",
               ].join(" ")}
-              style={{ marginBottom: "1.75rem" }}
             >
               <span className="eyebrow">
                 Werkgebied & opdrachtgevers
@@ -72,10 +59,10 @@ export default function WorkArea() {
 
             <h2
               className={[
-                "heading-lg transition-all duration-[900ms] ease-out delay-150",
+                "heading-lg transition-[opacity,transform] duration-[900ms] ease-out delay-150",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
               ].join(" ")}
-              style={{ maxWidth: "520px", marginBottom: "1.5rem" }}
+              style={{ maxWidth: "520px", marginBottom: "1.4rem" }}
             >
               Werkgebied &
               <br />
@@ -100,13 +87,13 @@ export default function WorkArea() {
           {/* RECHTS */}
           <div
             className={[
-              "transition-all duration-[900ms] ease-out delay-450",
+              "transition-[opacity,transform] duration-[900ms] ease-out delay-450",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
             ].join(" ")}
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "1.75rem",
+              gap: "1.8rem",
               maxWidth: "420px",
             }}
           >
@@ -133,27 +120,24 @@ export default function WorkArea() {
                   paddingTop: "1.25rem",
                 }}
               >
-                <p
+
+                <span
                   style={{
                     fontSize: "10px",
-                    letterSpacing: "0.26em",
+                    letterSpacing: "0.22em",
                     textTransform: "uppercase",
-                    color: "var(--accent)",
-                    marginBottom: "6px",
+                    color: "var(--forest)",
+                    display: "block",
+                    marginBottom: "0.45rem",
                   }}
                 >
                   {label}
-                </p>
+                </span>
 
-                <p
-                  style={{
-                    fontSize: "14px",
-                    lineHeight: "1.75",
-                    color: "var(--ink-soft)",
-                  }}
-                >
+                <p className="body-sm">
                   {value}
                 </p>
+
               </div>
             ))}
 
