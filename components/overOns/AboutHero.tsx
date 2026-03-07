@@ -17,7 +17,7 @@ function useInView(threshold = 0.15) {
           observer.disconnect();
         }
       },
-      { threshold }
+      { threshold, rootMargin: "0px 0px -80px 0px" }
     );
 
     observer.observe(el);
@@ -32,130 +32,108 @@ export default function AboutHero() {
 
   return (
     <section
-      ref={ref}
       aria-label="Over ons"
-      style={{
-        background: "var(--bg)",
-        padding: "clamp(6rem,10vw,9rem) var(--section-x) clamp(4rem,6vw,5rem)"
-      }}
+      className="section-pad"
+      style={{ background: "var(--bg)" }}
     >
-      <div
-        style={{
-          maxWidth: "var(--max-w)",
-          margin: "0 auto"
-        }}
-      >
+      <div className="section-inner">
 
-        {/* Eyebrow */}
+        {/* Header */}
         <div
-          className={[
-            "transition-all duration-700 ease-out",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          ].join(" ")}
-          style={{ marginBottom: "1.75rem" }}
-        >
-          <span className="eyebrow">Over ons</span>
-        </div>
-
-        {/* Titel */}
-        <h1
-          className={[
-            "heading-xl transition-all duration-[1000ms] ease-out delay-100",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          ].join(" ")}
+          ref={ref}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-10"
           style={{
-            maxWidth: "720px",
-            fontSize: "clamp(2.8rem,5vw,4.5rem)",
-            lineHeight: "1.08",
-            marginBottom: "clamp(3rem,5vw,4rem)"
+            marginBottom: "clamp(3rem,5vw,4rem)",
           }}
         >
-          Rust, aandacht en
-          <br />
-          tijdloos ontwerp
-        </h1>
 
-        {/* Content grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "3rem",
-            borderTop: "1px solid var(--border)",
-            paddingTop: "2.5rem"
-          }}
-          className="lg:grid-cols-[1fr_380px]"
-        >
+          {/* Titelblok */}
+          <div>
 
-          {/* Intro */}
-          <p
-            className={[
-              "body-lg transition-all duration-[900ms] ease-out delay-200",
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            ].join(" ")}
-            style={{ maxWidth: "560px" }}
-          >
-            Van der Veen ontwerpt en realiseert exclusieve buitenruimtes
-            voor particuliere opdrachtgevers. Elk project benaderen wij
-            als een samenhangend geheel — met aandacht voor detail,
-            verhoudingen en langdurige kwaliteit.
-          </p>
+            <div
+              className={[
+                "mb-6 transition-[opacity,transform] duration-700 ease-out",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+              ].join(" ")}
+            >
+              <span className="eyebrow">Over ons</span>
+            </div>
 
-          {/* Feiten */}
-          <div
-            className={[
-              "transition-all duration-[900ms] ease-out delay-300",
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            ].join(" ")}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.2rem"
-            }}
-          >
-
-            {[
-              { label: "Focus", value: "Exclusieve tuinen & buitenarchitectuur" },
-              { label: "Werkgebied", value: "Nederland — o.a. Bloemendaal, Wassenaar" },
-              { label: "Schaal", value: "Beperkt aantal projecten per jaar" }
-            ].map(({ label, value }) => (
-              <div
-                key={label}
-                style={{
-                  display: "flex",
-                  gap: "1rem",
-                  alignItems: "baseline"
-                }}
-              >
-
-                <span
-                  style={{
-                    fontSize: "9.5px",
-                    letterSpacing: "0.24em",
-                    textTransform: "uppercase",
-                    color: "var(--accent)",
-                    width: "90px",
-                    flexShrink: 0
-                  }}
-                >
-                  {label}
-                </span>
-
-                <span
-                  style={{
-                    fontSize: "13px",
-                    lineHeight: "1.6",
-                    color: "var(--ink-soft)"
-                  }}
-                >
-                  {value}
-                </span>
-
-              </div>
-            ))}
+            <h1
+              className={[
+                "heading-lg transition-[opacity,transform] duration-[900ms] ease-out delay-100",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+              ].join(" ")}
+            >
+              Rust, aandacht en
+              <br />
+              tijdloos ontwerp
+            </h1>
 
           </div>
 
+          {/* Intro tekst */}
+          <div
+            className={[
+              "transition-[opacity,transform] duration-[900ms] ease-out delay-200",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+            ].join(" ")}
+            style={{
+              paddingTop: "clamp(3rem,4vw,4rem)",
+              maxWidth: "520px",
+            }}
+          >
+            <p className="body-lg">
+              Van der Veen ontwerpt en realiseert exclusieve buitenruimtes
+              voor particuliere opdrachtgevers. Elk project benaderen wij
+              als een samenhangend geheel — met aandacht voor detail,
+              verhoudingen en langdurige kwaliteit.
+            </p>
+          </div>
+
+        </div>
+
+        {/* Divider */}
+        <div
+          style={{
+            borderTop: "1px solid var(--border)",
+            marginBottom: "clamp(2.5rem,4vw,3rem)",
+          }}
+        />
+
+        {/* Facts */}
+        <div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-y-6 gap-x-16"
+        >
+          {[
+            { label: "Focus", value: "Exclusieve tuinen & buitenarchitectuur" },
+            { label: "Werkgebied", value: "Nederland — o.a. Bloemendaal, Wassenaar" },
+            { label: "Schaal", value: "Beperkt aantal projecten per jaar" },
+          ].map(({ label, value }) => (
+            <div key={label}>
+
+              <span
+                style={{
+                  fontSize: "10px",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: "var(--forest)",
+                  display: "block",
+                  marginBottom: "0.6rem",
+                }}
+              >
+                {label}
+              </span>
+
+              <p
+                className="body-sm"
+                style={{ maxWidth: "280px" }}
+              >
+                {value}
+              </p>
+
+            </div>
+          ))}
         </div>
 
       </div>
