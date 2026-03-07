@@ -46,7 +46,6 @@ export default function ProjectsCta() {
 
           {/* LEFT */}
           <div>
-
             <div
               className={[
                 "mb-8",
@@ -59,7 +58,7 @@ export default function ProjectsCta() {
 
             <h2
               className={[
-                "heading-xl",
+                "heading-lg",
                 "transition-[opacity,transform] duration-[900ms] ease-out delay-150",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
               ].join(" ")}
@@ -68,7 +67,6 @@ export default function ProjectsCta() {
               <br />
               nieuwe buitenruimte?
             </h2>
-
           </div>
 
           {/* RIGHT */}
@@ -79,7 +77,6 @@ export default function ProjectsCta() {
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
             ].join(" ")}
           >
-
             <p className="body-lg" style={{ maxWidth: "440px" }}>
               In een eerste gesprek verkennen we uw wensen, ideeën en de
               mogelijkheden van uw locatie. Zonder verplichting, met volledige
@@ -87,14 +84,12 @@ export default function ProjectsCta() {
             </p>
 
             <div className="flex flex-col gap-4">
-
               <Link
                 href="/contact"
                 className="btn-primary group"
                 style={{ width: "fit-content" }}
               >
                 Plan een kennismaking
-
                 <svg
                   width="16"
                   height="10"
@@ -110,7 +105,6 @@ export default function ProjectsCta() {
                     strokeLinejoin="round"
                   />
                 </svg>
-
               </Link>
 
               <p
@@ -124,13 +118,10 @@ export default function ProjectsCta() {
               >
                 Een eerste gesprek is bedoeld om te verkennen of we bij elkaar passen.
               </p>
-
             </div>
-
           </div>
 
         </div>
-
       </div>
     </section>
   );

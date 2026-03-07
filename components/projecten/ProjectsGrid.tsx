@@ -53,28 +53,50 @@ function ProjectCardLarge({ project }: { project: ProjectCard }) {
       <Link href={`/projecten/${project.slug}`} className="group block">
 
         {/* IMAGE */}
-        <div className="img-zoom mb-14">
+        <div
+          className="img-zoom"
+          style={{ marginBottom: "clamp(1rem,1.6vw,1.2rem)" }}
+        >
           <img
             src={project.heroImage.asset.url}
             alt={project.heroImage.alt || project.title}
-            className="w-full h-[52vh] lg:h-[62vh] object-cover"
+            className="w-full object-cover"
+            style={{ height: "clamp(48vh,62vh,70vh)" }}
           />
         </div>
 
         {/* TEXT */}
         <div className="flex items-start justify-between gap-12">
-
-          <div className="max-w-[560px]">
-
-            <p className="text-[11px] tracking-[0.18em] uppercase text-[var(--ink-faint)] mb-3">
+          <div style={{ maxWidth: "560px" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "10px",
+                fontWeight: 400,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: "var(--ink-faint)",
+                marginBottom: "0.5rem",
+              }}
+            >
               {project.location ?? "Nederland"}
               {project.year ? ` · ${project.year}` : ""}
             </p>
 
-            <h3 className="heading-lg group-hover:text-[var(--forest)] transition-colors">
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 400,
+                fontSize: "clamp(1.5rem,2.4vw,2.2rem)",
+                lineHeight: 1.18,
+                letterSpacing: "-0.01em",
+                color: "var(--ink)",
+                transition: "color 0.3s",
+              }}
+              className="group-hover:text-[var(--forest)]"
+            >
               {project.title}
             </h3>
-
           </div>
 
           <svg
@@ -82,7 +104,7 @@ function ProjectCardLarge({ project }: { project: ProjectCard }) {
             height="12"
             viewBox="0 0 18 12"
             fill="none"
-            className="shrink-0 mt-4 text-[var(--ink-faint)] transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-[var(--forest)]"
+            className="shrink-0 mt-2 text-[var(--ink-faint)] transition-[transform,color] duration-300 group-hover:translate-x-2 group-hover:text-[var(--forest)]"
           >
             <path
               d="M12 1l5 5-5 5M1 6h16"
@@ -92,7 +114,6 @@ function ProjectCardLarge({ project }: { project: ProjectCard }) {
               strokeLinejoin="round"
             />
           </svg>
-
         </div>
       </Link>
     </div>
@@ -114,28 +135,50 @@ function ProjectCardSmall({ project, delay = 0 }: { project: ProjectCard; delay?
       <Link href={`/projecten/${project.slug}`} className="group block">
 
         {/* IMAGE */}
-        <div className="img-zoom mb-12">
+        <div
+          className="img-zoom"
+          style={{ marginBottom: "1rem" }}
+        >
           <img
             src={project.heroImage.asset.url}
             alt={project.heroImage.alt || project.title}
-            className="w-full h-[36vh] lg:h-[42vh] object-cover"
+            className="w-full object-cover"
+            style={{ height: "clamp(34vh,42vh,48vh)" }}
           />
         </div>
 
         {/* TEXT */}
-        <div className="flex items-start justify-between gap-10">
-
+        <div className="flex items-start justify-between gap-4">
           <div>
-
-            <p className="text-[10px] tracking-[0.18em] uppercase text-[var(--ink-faint)] mb-3">
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "10px",
+                fontWeight: 400,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: "var(--ink-faint)",
+                marginBottom: "0.45rem",
+              }}
+            >
               {project.location ?? "Nederland"}
               {project.year ? ` · ${project.year}` : ""}
             </p>
 
-            <h3 className="heading-md group-hover:text-[var(--forest)] transition-colors">
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 400,
+                fontSize: "clamp(1.25rem,1.8vw,1.6rem)",
+                lineHeight: 1.22,
+                letterSpacing: "-0.01em",
+                color: "var(--ink)",
+                transition: "color 0.3s",
+              }}
+              className="group-hover:text-[var(--forest)]"
+            >
               {project.title}
             </h3>
-
           </div>
 
           <svg
@@ -143,7 +186,7 @@ function ProjectCardSmall({ project, delay = 0 }: { project: ProjectCard; delay?
             height="10"
             viewBox="0 0 16 10"
             fill="none"
-            className="shrink-0 mt-3 text-[var(--ink-faint)] transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-[var(--forest)]"
+            className="shrink-0 mt-2 text-[var(--ink-faint)] transition-[transform,color] duration-300 group-hover:translate-x-1.5 group-hover:text-[var(--forest)]"
           >
             <path
               d="M11 1l4 4-4 4M1 5h14"
@@ -153,9 +196,7 @@ function ProjectCardSmall({ project, delay = 0 }: { project: ProjectCard; delay?
               strokeLinejoin="round"
             />
           </svg>
-
         </div>
-
       </Link>
     </div>
   );
@@ -168,7 +209,6 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
   let i = 0;
 
   while (i < projects.length) {
-
     const isFirst = i === 0;
 
     rows.push(
@@ -188,7 +228,6 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
     i++;
 
     if (i < projects.length) {
-
       const p1 = projects[i];
       const p2 = projects[i + 1];
 
@@ -214,15 +253,10 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
     <section
       style={{
         background: "var(--bg)",
-        padding: "0 var(--section-x)",
+        padding: "0 var(--section-x) var(--section-y)",
       }}
     >
-      <div
-        style={{
-          maxWidth: "var(--max-w)",
-          margin: "0 auto",
-        }}
-      >
+      <div style={{ maxWidth: "var(--max-w)", margin: "0 auto" }}>
         {rows}
       </div>
     </section>

@@ -65,15 +65,10 @@ export default function ServicesList() {
     <section
       style={{
         background: "var(--bg)",
-        padding: "0 var(--section-x)",
+        padding: "0 var(--section-x) var(--section-y)",
       }}
     >
-      <div
-        style={{
-          maxWidth: "var(--max-w)",
-          margin: "0 auto",
-        }}
-      >
+      <div style={{ maxWidth: "var(--max-w)", margin: "0 auto" }}>
         {SERVICES.map((service, index) => (
           <ServiceRow
             key={service.number}
@@ -108,12 +103,10 @@ function ServiceRow({
     <div
       ref={ref}
       style={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
         borderTop: "1px solid var(--border)",
         padding: "clamp(2.5rem,4vw,3.5rem) 0",
       }}
-      className="lg:grid-cols-[80px_1fr_1fr] lg:gap-10"
+      className="grid grid-cols-1 lg:grid-cols-[80px_1fr_1fr] lg:gap-10"
     >
 
       {/* Nummer */}
@@ -126,10 +119,11 @@ function ServiceRow({
       >
         <span
           style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(2.2rem,3vw,3.5rem)",
-            color: "var(--forest-muted)",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2.2rem,3vw,3.2rem)",
             lineHeight: 1,
+            letterSpacing: "-0.02em",
+            color: "rgba(44,74,46,0.12)",
           }}
         >
           {number}
@@ -147,26 +141,17 @@ function ServiceRow({
           transitionDelay: inView ? `${80 + index * 80}ms` : "0ms",
         }}
       >
-        <h3
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontWeight: 300,
-            fontSize: "clamp(1.8rem,2.4vw,2.6rem)",
-            lineHeight: 1.1,
-            letterSpacing: "-0.01em",
-            color: "var(--ink)",
-            marginBottom: "0.4rem",
-          }}
-        >
+        <h3 className="heading-md" style={{ marginBottom: "0.4rem" }}>
           {title}
         </h3>
 
         <p
           style={{
-            fontFamily: "var(--font-serif)",
+            fontFamily: "var(--font-display)",
             fontStyle: "italic",
-            color: "var(--accent)",
-            fontSize: "1rem",
+            fontSize: "0.95rem",
+            color: "var(--stone-mid)",
+            lineHeight: 1.6,
           }}
         >
           {intro}
@@ -184,23 +169,15 @@ function ServiceRow({
         <span
           style={{
             display: "block",
-            width: "24px",
+            width: "1.5rem",
             height: "1px",
             background: "var(--forest-muted)",
             marginBottom: "1rem",
           }}
         />
-
-        <p
-          style={{
-            fontSize: "14px",
-            lineHeight: "1.9",
-            color: "var(--ink-soft)",
-          }}
-        >
-          {body}
-        </p>
+        <p className="body-sm">{body}</p>
       </div>
+
     </div>
   );
 }

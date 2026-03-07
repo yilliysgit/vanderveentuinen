@@ -146,7 +146,7 @@ function NavCard({
 
       <h3
         style={{
-          fontFamily: "var(--font-serif)",
+          fontFamily: "var(--font-display)",
           fontWeight: 300,
           fontSize: "clamp(1.35rem,1.8vw,1.9rem)",
           lineHeight: 1.18,

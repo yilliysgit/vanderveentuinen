@@ -57,8 +57,10 @@ export default function HowWeWork() {
   return (
     <section
       aria-label="Werkwijze"
-      className="section-pad"
-      style={{ background: "var(--bg)" }}
+      style={{
+        background: "var(--bg)",
+        padding: "var(--section-y) var(--section-x) clamp(2.5rem,4vw,4rem)",
+      }}
     >
       <div className="section-inner">
         {/* HEADER */}

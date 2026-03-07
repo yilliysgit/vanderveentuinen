@@ -36,18 +36,16 @@ export default function ProjectsHero() {
   return (
     <section
       aria-label="Projecten"
-      className="section-pad"
-      style={{ background: "var(--bg)" }}
+      style={{
+        background: "var(--bg)",
+        padding: "var(--section-y) var(--section-x) clamp(2.5rem,4vw,4rem)",
+      }}
     >
       <div className="section-inner">
 
-        {/* HEADER */}
         <div
           ref={ref}
           className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-10"
-          style={{
-            marginBottom: "clamp(3.5rem,4vw,5rem)",
-          }}
         >
 
           {/* TITLE */}
@@ -72,9 +70,7 @@ export default function ProjectsHero() {
               "transition-[opacity,transform] duration-700 ease-out delay-150",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
             ].join(" ")}
-            style={{
-              paddingTop: "clamp(3rem,4vw,4rem)",
-            }}
+            style={{ paddingTop: "clamp(3rem,4vw,4rem)" }}
           >
             <p className="body-lg" style={{ maxWidth: "440px" }}>
               Een selectie van gerealiseerde projecten, ontworpen en uitgevoerd
@@ -83,10 +79,7 @@ export default function ProjectsHero() {
 
             <p
               className="body-lg"
-              style={{
-                maxWidth: "440px",
-                marginTop: "1.25rem",
-              }}
+              style={{ maxWidth: "440px", marginTop: "1.25rem" }}
             >
               Elke buitenruimte is afgestemd op de woning, de omgeving en het
               leven van de opdrachtgever.
@@ -94,8 +87,6 @@ export default function ProjectsHero() {
           </div>
 
         </div>
-
-        
 
       </div>
     </section>

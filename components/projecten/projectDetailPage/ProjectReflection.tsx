@@ -12,7 +12,7 @@ export default function ProjectReflection({ text }: ProjectReflectionProps) {
     <section
       style={{
         background: "var(--bg)",
-        padding: "clamp(4rem,7vw,6rem) var(--section-x)",
+        padding: "clamp(2rem,3vw,3rem) var(--section-x) clamp(4rem,7vw,6rem)",
       }}
     >
       <div
@@ -22,7 +22,6 @@ export default function ProjectReflection({ text }: ProjectReflectionProps) {
           textAlign: "center",
         }}
       >
-        {/* subtiele lijn */}
         <div
           style={{
             width: "42px",
@@ -34,8 +33,8 @@ export default function ProjectReflection({ text }: ProjectReflectionProps) {
 
         <p
           style={{
-            fontFamily: "var(--font-serif)",
-            fontWeight: 300,
+            fontFamily: "var(--font-display)",
+            fontWeight: 400,
             fontStyle: "italic",
             fontSize: "clamp(1.3rem,2vw,1.7rem)",
             lineHeight: 1.65,

@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { projectDetailQuery } from "@/sanity/lib/projectQueries";
 
-import ProjectHero from "@/components/projecten/projectDetailPage/projectHero";
 import ProjectIntro from "@/components/projecten/projectDetailPage/ProjectIntro";
 import ProjectGallery from "@/components/projecten/projectDetailPage/ProjectGallery";
 import ProjectReflection from "@/components/projecten/projectDetailPage/ProjectReflection";
@@ -72,13 +71,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         minHeight: "100vh",
       }}
     >
-      {/* HERO */}
-      {project.heroImage?.asset?.url && (
-        <ProjectHero
-          imageUrl={project.heroImage.asset.url}
-          alt={project.heroImage.alt ?? project.title}
-        />
-      )}
+    
 
       {/* INTRO */}
       <ProjectIntro

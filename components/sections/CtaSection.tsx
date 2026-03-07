@@ -54,9 +54,9 @@ export default function CtaSection() {
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 400,
-                fontSize: "clamp(2.4rem, 4.5vw, 4.8rem)",
-                lineHeight: 1.04,
-                letterSpacing: "-0.02em",
+                fontSize: "clamp(2rem,3.6vw,3.4rem)",
+                lineHeight: 1.08,
+                letterSpacing: "-0.015em",
                 color: "var(--ink)",
               }}
             >

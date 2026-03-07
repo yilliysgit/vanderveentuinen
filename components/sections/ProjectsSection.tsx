@@ -13,7 +13,7 @@ export default async function ProjectsSection() {
       aria-label="Geselecteerde projecten"
       style={{
         background: "var(--bg)",
-padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
+        padding: "0 var(--section-x) var(--section-y)",
       }}
     >
       <div style={{ maxWidth: "var(--max-w)", margin: "0 auto" }}>
@@ -47,7 +47,6 @@ padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
         </div>
 
         {/* PROJECT 1 (FEATURED) */}
-
         {project1 && (
           <Link
             href={`/projecten/${project1.slug}`}
@@ -68,9 +67,7 @@ padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
             </div>
 
             <div className="flex items-start justify-between gap-6 flex-wrap">
-
               <div style={{ maxWidth: "520px" }}>
-
                 <p
                   style={{
                     fontFamily: "var(--font-body)",
@@ -93,15 +90,12 @@ padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
                     lineHeight: 1.18,
                     letterSpacing: "-0.01em",
                     color: "var(--ink)",
-                    paddingBottom: "1.2rem",
-                    borderBottom: "1px solid var(--forest-muted)",
                     transition: "color 0.3s",
                   }}
                   className="group-hover:text-[var(--forest)]"
                 >
                   {project1.title}
                 </h3>
-
               </div>
 
               <svg
@@ -119,20 +113,15 @@ padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
                   strokeLinejoin="round"
                 />
               </svg>
-
             </div>
           </Link>
         )}
 
         {/* PROJECT GRID */}
-
         <div
           className="grid grid-cols-1 lg:grid-cols-2"
-          style={{
-            gap: "clamp(2rem,3vw,2.5rem)",
-          }}
+          style={{ gap: "clamp(2rem,3vw,2.5rem)" }}
         >
-
           {[project2, project3].map(
             (project) =>
               project && (
@@ -141,10 +130,7 @@ padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
                   href={`/projecten/${project.slug}`}
                   className="group block"
                 >
-                  <div
-                    className="img-zoom"
-                    style={{ marginBottom: "1rem" }}
-                  >
+                  <div className="img-zoom" style={{ marginBottom: "1rem" }}>
                     <img
                       src={project.heroImage.asset.url}
                       alt={project.heroImage.alt}
@@ -155,9 +141,7 @@ padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
                   </div>
 
                   <div className="flex items-start justify-between gap-4">
-
                     <div>
-
                       <p
                         style={{
                           fontFamily: "var(--font-body)",
@@ -186,7 +170,6 @@ padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
                       >
                         {project.title}
                       </h3>
-
                     </div>
 
                     <svg
@@ -204,7 +187,6 @@ padding: "clamp(1.2rem,2vw,1.8rem) var(--section-x) clamp(5rem,7vw,6rem)",
                         strokeLinejoin="round"
                       />
                     </svg>
-
                   </div>
                 </Link>
               )
