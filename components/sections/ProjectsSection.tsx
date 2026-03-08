@@ -4,6 +4,8 @@ import Link from "next/link";
 
 export default async function ProjectsSection() {
   const projects = await client.fetch(featuredProjectsQuery);
+  console.log("FEATURED PROJECTS:", projects);
+
   if (!projects || projects.length === 0) return null;
 
   const [project1, project2, project3] = projects;
