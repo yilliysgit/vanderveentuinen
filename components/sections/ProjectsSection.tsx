@@ -7,9 +7,13 @@ export const revalidate = 0;
 
 
 export default async function ProjectsSection() {
-  const projects = await client.fetch(featuredProjectsQuery);
+  let projects = [];
+  try {
+    projects = await client.fetch(featuredProjectsQuery);
+  } catch (e) {
+    console.error("Sanity fetch error:", e);
+  }
   console.log("FEATURED PROJECTS:", projects);
-
   if (!projects || projects.length === 0) return null;
 
   const [project1, project2, project3] = projects;
