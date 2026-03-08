@@ -1,18 +1,13 @@
 export const featuredProjectsQuery = `
-*[_type == "project" && featured == true]
+*[_type == "project"]
 | order(year desc)[0...3] {
   title,
   "slug": slug.current,
   location,
   year,
-  propertyType,
-  heroImage {
-    asset->{
-      _id,
-      url
-    },
-    alt,
-    caption
+  heroImage{
+    asset->{url},
+    alt
   }
 }
 `;
