@@ -5,14 +5,9 @@ import Link from "next/link";
 export const revalidate = 0;
 
 export default async function ProjectsSection() {
-  const query = encodeURIComponent('*[_type == "project" && featured == true][0...3]{title, "slug": slug.current, location, year, heroImage{asset->{url}, alt}}');
-  
-  const res = await fetch(
-    `https://u7yib9po.api.sanity.io/v2024-01-01/data/query/production?query=${query}`,
-    { cache: 'no-store' }
-  );
-  const data = await res.json();
-  const projects = data.result ?? [];
+  const projects = await client.fetch(featuredProjectsQuery);
+
+  if (!projects || projects.length === 0) return null;
 
   const [project1, project2, project3] = projects;
 

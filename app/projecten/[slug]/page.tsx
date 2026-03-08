@@ -10,6 +10,9 @@ import ProjectDetailCta from "@/components/projecten/projectDetailPage/ProjectDe
 
 import type { Metadata } from "next";
 
+export const revalidate = 0;
+
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
