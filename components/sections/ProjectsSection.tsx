@@ -7,14 +7,14 @@ export const revalidate = 0;
 
 
 export default async function ProjectsSection() {
-  let projects = [];
-  try {
-    projects = await client.fetch(featuredProjectsQuery);
-  } catch (e) {
-    console.error("Sanity fetch error:", e);
-  }
-  console.log("FEATURED PROJECTS:", projects);
-  if (!projects || projects.length === 0) return null;
+  const res = await fetch(
+    `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2024-01-01/data/query/${process.env.NEXT_PUBLIC_SANITY_DATASET}?query=*[_type == "project" && featured == true][0...3]{title, "slug": slug.current, location, year, heroImage{asset->{url}, alt}}`,
+    { cache: 'no-store' }
+  );
+  const data = await res.json();
+  const projects = data.result ?? [];
+  console.log("FEATURED PROJECTS:", JSON.stringify(projects));
+  
 
   const [project1, project2, project3] = projects;
 
