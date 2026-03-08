@@ -8,9 +8,8 @@ import { projectsOverviewQuery } from "@/sanity/lib/projectQueries";
 export const revalidate = 0;
 
 export default async function ProjectenPage() {
-  const projects = await client.fetch(projectsOverviewQuery);
+  const projects = await client.fetch(projectsOverviewQuery, {}, { cache: 'no-store' });
   console.log("projects:", JSON.stringify(projects));
-
   return (
     <>
       <ProjectsHero />
