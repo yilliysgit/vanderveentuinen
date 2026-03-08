@@ -2,6 +2,10 @@ import { client } from "@/sanity/lib/client";
 import { featuredProjectsQuery } from "@/sanity/lib/projectQueries";
 import Link from "next/link";
 
+
+export const revalidate = 0;
+
+
 export default async function ProjectsSection() {
   const projects = await client.fetch(featuredProjectsQuery);
   console.log("FEATURED PROJECTS:", projects);

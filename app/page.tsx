@@ -6,6 +6,8 @@ import Reviews from "@/components/sections/Reviews";
 import Principes from "@/components/sections/Principes";
 import CtaSection from "@/components/sections/CtaSection";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Van der Veen — Exclusieve tuinen & buitenruimtes op maat",
   description:
