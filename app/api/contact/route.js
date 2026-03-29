@@ -13,7 +13,7 @@ export async function POST(req) {
 
     await resend.emails.send({
       from: "Contact <contact@vanderveen.nl>", // later eigen domein
-      to: "info@vanderveentuinen.nl", // 👈 HIER komt jouw mail
+      to: "yilliy@easyconcepts.com", // 👈 HIER komt jouw mail
       subject: "Nieuwe aanvraag via website",
       html: `
         <h2>Nieuwe aanvraag</h2>
